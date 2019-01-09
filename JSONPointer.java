@@ -1,4 +1,4 @@
-package org.json;
+package com.elmansoft.api.document.json;
 
 import static java.lang.String.format;
 

@@ -1,10 +1,6 @@
 JSON in Java [package org.json]
 ===============================
 
-[![Maven Central](https://img.shields.io/maven-central/v/org.json/json.svg)](https://mvnrepository.com/artifact/org.json/json)
-
-**[Click here if you just want the jar file.](http://central.maven.org/maven2/org/json/json/20180813/json-20180813.jar)**
-
 JSON is a light-weight, language independent, data interchange format.
 See http://www.JSON.org/
 
@@ -130,9 +126,3 @@ latest code as of 23 Nov, 2015.
 
 20150729    Checkpoint for Maven central repository release. Contains the latest code
 as of 29 July, 2015.
-~~~
-
-
-JSON-java releases can be found by searching the Maven repository for groupId "org.json"
-and artifactId "json". For example:
-https://search.maven.org/search?q=g:org.json%20AND%20a:json&core=gav

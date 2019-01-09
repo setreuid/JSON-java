@@ -1,4 +1,4 @@
-package org.json;
+package com.elmansoft.api.document.json;
 
 /*
 Copyright (c) 2006 JSON.org

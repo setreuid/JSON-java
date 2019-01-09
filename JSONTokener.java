@@ -1,4 +1,4 @@
-package org.json;
+package com.elmansoft.api.document.json;
 
 import java.io.BufferedReader;
 import java.io.IOException;

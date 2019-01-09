@@ -1,4 +1,4 @@
-package org.json;
+package com.elmansoft.api.document.json;
 
 import java.io.Closeable;
 
@@ -660,7 +660,7 @@ public class JSONObject {
      *             if the key is not found or if the value
      *             cannot be converted to BigDecimal.
      */
-    public BigDecimal getBigDecimal(String key) throws JSONException {
+    public BigDecimal getBigDecimalRaw(String key) throws JSONException {
         Object object = this.get(key);
         BigDecimal ret = objectToBigDecimal(object, null);
         if (ret != null) {
@@ -668,6 +668,10 @@ public class JSONObject {
         }
         throw new JSONException("JSONObject[" + quote(key)
                 + "] could not be converted to BigDecimal (" + object + ").");
+    }
+
+    public BigDecimal getBigDecimal(String key) {
+        return this.isNull(key) ? new BigDecimal(0) : this.getBigDecimalRaw(key);
     }
 
     /**
@@ -680,8 +684,12 @@ public class JSONObject {
      *             if the key is not found or if the value is not a Number
      *             object and cannot be converted to a number.
      */
-    public double getDouble(String key) throws JSONException {
+    public double getDoubleRaw(String key) throws JSONException {
         return this.getNumber(key).doubleValue();
+    }
+
+    public double getDouble(String key) {
+        return this.isNull(key) ? 0 : this.getDoubleRaw(key);
     }
 
     /**
@@ -731,8 +739,12 @@ public class JSONObject {
      *             if the key is not found or if the value cannot be converted
      *             to an integer.
      */
-    public int getInt(String key) throws JSONException {
+    public int getIntRaw(String key) throws JSONException {
         return this.getNumber(key).intValue();
+    }
+
+    public int getInt(String key) {
+        return this.isNull(key) ? 0 : this.getIntRaw(key);
     }
 
     /**
@@ -832,12 +844,20 @@ public class JSONObject {
      * @throws JSONException
      *             if there is no string value for the key.
      */
-    public String getString(String key) throws JSONException {
+    public String getStringRaw(String key) throws JSONException {
         Object object = this.get(key);
         if (object instanceof String) {
             return (String) object;
         }
         throw new JSONException("JSONObject[" + quote(key) + "] not a string.");
+    }
+
+    public String getString(String key) {
+        return this.isNull(key) ? "" : this.getStringRaw(key);
+    }
+
+    public String getString(String key, String value) {
+        return this.isNull(key) ? value : this.getStringRaw(key);
     }
 
     /**
@@ -2520,6 +2540,10 @@ public class JSONObject {
         } catch (IOException exception) {
             throw new JSONException(exception);
         }
+    }
+
+    public boolean isEmpty(String key) {
+        return this.isNull(key) || this.get(key) instanceof String && this.getString(key).equals("");
     }
 
     /**
